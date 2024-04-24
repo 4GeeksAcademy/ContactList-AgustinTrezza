@@ -1,3 +1,61 @@
 /* 
     General Styles
 */
+.image {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+}
+.container-grid-custom {
+    display: flex;
+    justify-content: space-between;
+    /* grid-template-columns: 20% 55% 25%; */
+    align-items: flex-start;
+    gap: 3rem;
+}
+.text-card {
+    color: grey;
+    font-weight: 300;
+    font-size: 16px;
+    margin: .2rem;
+}
+.title {
+    margin-bottom: 4rem;
+    font-size: 30px;
+    font-weight: 300;
+}
+.title-form {
+    margin-bottom: 2rem;
+    font-size: 45px;
+}
+.button-style {
+    border: 'none';
+    background: 'none';
+    color: black!important;
+    padding: '0';
+    margin: '0 5px';
+}
+.form {
+    width: 50%;
+    margin: auto;
+}
+.input-container {
+    margin-bottom: 10px;
+}
+.btn-save {
+    width: 100%;
+}
+.anchor {
+    text-decoration: underline!important;
+    color: rgb(79, 79, 246)!important;
+}
+.container-custom-home-title {
+    width: 70%!important;
+    margin: auto!important;
+}
+.container-int {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
