@@ -53,7 +53,7 @@ export const EditUserView = () => {
         throw new Error('Error al editar el contacto');
       }
 
-      // Redireccionar a la página de contactos después de editar
+      
       window.location.href = '/';
     } catch (error) {
       console.error('Error:', error);

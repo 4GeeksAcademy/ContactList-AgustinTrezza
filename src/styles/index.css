@@ -20,7 +20,7 @@
     margin: .2rem;
 }
 .title {
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
     font-size: 30px;
     font-weight: 300;
 }
@@ -58,4 +58,8 @@
     justify-content: space-between;
     align-items: center;
     gap: 30px;
+}
+.margin-top {
+    margin-top: 3rem;
+    font-size: 20px;
 }

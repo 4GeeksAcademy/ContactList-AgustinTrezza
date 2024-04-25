@@ -1,22 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Card, Button, Spinner } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faPhone, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import { faTrashAlt, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
+import { Context } from "./../store/appContext";
 
 export const Home = () => {
-  const [contacts, setContacts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { store, actions } = useContext(Context);
 
   useEffect(() => {
-    fetch('https://playground.4geeks.com/contact/agendas/agustintrezza')
-      .then(response => response.json())
-      .then(data => {
-        setContacts(data.contacts);
-        setLoading(false);
-      })
-      .catch(error => console.error('Error al obtener los datos de contacto:', error));
+    actions.loadSomeData();
+    setLoading(false);
   }, []);
 
   const handleDelete = async (contactId) => {
@@ -24,15 +20,8 @@ export const Home = () => {
       const confirmDelete = window.confirm("¿Estás seguro que deseas eliminar este contacto?");
       if (!confirmDelete) return;
 
-      const response = await fetch(`https://playground.4geeks.com/contact/agendas/agustintrezza/contacts/${contactId}`, {
-        method: 'DELETE'
-      });
-
-      if (!response.ok) {
-        throw new Error('Error al eliminar el contacto');
-      }
-
-      setContacts(contacts.filter(contact => contact.id !== contactId));
+      await actions.deleteContact(contactId);
+      actions.loadSomeData();
     } catch (error) {
       console.error('Error:', error);
     }
@@ -44,6 +33,7 @@ export const Home = () => {
         <div className="text-start mt-5 container-custom-home-title">
           <h1 className="title">Contactos de Agustin Trezza</h1>
         </div>
+       
         {loading ? (
           <div className="d-flex justify-content-center align-items-center" style={{ minHeight: "40vh" }}>
             <Spinner animation="border" role="status">
@@ -51,8 +41,8 @@ export const Home = () => {
             </Spinner>
           </div>
         ) : (
-          contacts && contacts.length > 0 ? (
-            contacts.map((contact) => (
+          store.contacts && store.contacts.length > 0 ? (
+            store.contacts.map((contact) => (
               <div key={contact.id} className="col-md-8 mb-4 ">
                 <Card>
                   <Card.Body>
@@ -86,6 +76,10 @@ export const Home = () => {
             <div>No hay contactos para mostrar.</div>
           )
         )}
+      </div>
+      <div className="margin-top">{store.message}</div>
+      <div className="mt-4">
+        <h4 >Si no hay usuarios: crear uno (https://playground.4geeks.com/contact/docs) usando el método POST, pasando como parámtero "agustintrezza" para crear la agenda: <strong>'https://playground.4geeks.com/contact/agendas/agustintrezza'</strong> </h4>
       </div>
     </div>
   );
