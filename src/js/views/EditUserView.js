@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom"; // Importa useNavigate
 import { Spinner } from "react-bootstrap";
 import "../../styles/demo.css";
 
@@ -12,6 +12,7 @@ export const EditUserView = () => {
   });
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
+  const navigate = useNavigate(); // Declara useNavigate
 
   useEffect(() => {
     fetch(`https://playground.4geeks.com/contact/agendas/agustintrezza`)
@@ -53,8 +54,8 @@ export const EditUserView = () => {
         throw new Error('Error al editar el contacto');
       }
 
-      
-      window.location.href = '/';
+      // Redirecciona a la ruta "/" después de editar
+      navigate('/');
     } catch (error) {
       console.error('Error:', error);
     }

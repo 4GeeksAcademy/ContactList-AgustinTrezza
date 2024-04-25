@@ -63,3 +63,6 @@
     margin-top: 3rem;
     font-size: 20px;
 }
+.margin-bottom-custom {
+    padding-bottom: 4rem!important;
+}

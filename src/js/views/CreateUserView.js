@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // Importa useNavigate
 import "../../styles/demo.css";
 
 export const CreateUserView = () => {
@@ -9,6 +9,8 @@ export const CreateUserView = () => {
     phone: "",
     address: ""
   });
+
+  const navigate = useNavigate(); // Declara useNavigate
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -42,7 +44,8 @@ export const CreateUserView = () => {
         address: ""
       });
 
-      window.location.href = '/';
+      // Redirecciona a la ruta "/" después de agregar un usuario
+      navigate('/');
     } catch (error) {
       console.error('Error:', error);
     }
@@ -50,11 +53,10 @@ export const CreateUserView = () => {
 
   return (
     <div className="container">
-      
       <form onSubmit={handleSubmit} className="mx-auto mt-4 form">
-      <div className="text-start mt-5 title-form">
-        <h2>Crear un nuevo contacto</h2>
-      </div>
+        <div className="text-start mt-5 title-form">
+          <h2>Crear un nuevo contacto</h2>
+        </div>
         <div className="form-group input-container">
           <label htmlFor="name">Name:</label>
           <input
@@ -107,11 +109,10 @@ export const CreateUserView = () => {
           Save
         </button>
         <Link to="/">
-        <button className="btn anchor">or back to Contacts</button>
-      </Link>
+          <button className="btn anchor">or back to Contacts</button>
+        </Link>
       </form>
       <br />
-      
     </div>
   );
 };

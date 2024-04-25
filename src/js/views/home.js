@@ -79,7 +79,7 @@ export const Home = () => {
       </div>
       <div className="margin-top">{store.message}</div>
       <div className="mt-4">
-        <h4 >Si no hay usuarios: crear uno (https://playground.4geeks.com/contact/docs) usando el método POST, pasando como parámtero "agustintrezza" para crear la agenda: <strong>'https://playground.4geeks.com/contact/agendas/agustintrezza'</strong> </h4>
+        <h4 className="margin-bottom-custom">Si no hay usuarios: crear uno (https://playground.4geeks.com/contact/docs) usando el método POST, pasando como parámtero "agustintrezza" para crear la agenda: <strong>'https://playground.4geeks.com/contact/agendas/agustintrezza'</strong> </h4>
       </div>
     </div>
   );
